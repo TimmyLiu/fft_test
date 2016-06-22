@@ -8,7 +8,7 @@ using std::endl;
 int main()
 {
 	size_t batch_size = 1;
-	size_t num_size = 8;
+	size_t num_size = 9;
 
 	float *x_real, *x_imag;
 	float *ref_real, *ref_imag;
@@ -87,7 +87,21 @@ int main()
 	{
 		for (int b = 0; b < batch_size; b++)
 		{
-			eight_point_fft(x_real + b * 4, x_imag + b * 4, test_real + b * 4, test_imag + b * 4);
+			eight_point_fft(x_real + b * 8, x_imag + b * 8, test_real + b * 8, test_imag + b * 8);
+		}
+	}
+	else if (num_size == 3)
+	{
+		for (int b = 0; b < batch_size; b++)
+		{
+			three_point_fft(x_real + b * 3, x_imag + b * 3, test_real + b * 3, test_imag + b * 3, 0);
+		}
+	}
+	else if (num_size == 9)
+	{
+		for (int b = 0; b < batch_size; b++)
+		{
+			nine_point_fft(x_real + b * 9, x_imag + b * 9, test_real + b * 9, test_imag + b * 9);
 		}
 	}
 
